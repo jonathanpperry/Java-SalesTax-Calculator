@@ -1,4 +1,5 @@
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,9 +8,11 @@ public class SalesTax {
     public static void main(String[] args)throws Exception
     {
         // We need to provide file path as the parameter:
-        File file = new File("./src/goods.txt");
+        File file = new File("./src/input1.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
+
+        DecimalFormat numberFormat = new DecimalFormat("#0.00");
 
         ArrayList goodsQuantities = new ArrayList<Integer>();
         ArrayList goodsImported = new ArrayList<Boolean>();
@@ -27,6 +30,7 @@ public class SalesTax {
         // Add information to the arraylists
         while ((st = br.readLine()) != null) {
             boolean isExempt = false;
+            double taxCost = 0;
             String[] splitString = st.split(" ");
             goodsQuantities.add(Integer.parseInt(splitString[0]));
             int goodStartIndex;
@@ -59,19 +63,16 @@ public class SalesTax {
             // Find if good is exempt
             for (int i=0; i<goodsNameArr.size(); i++) {
                 if (Arrays.asList(definitions.book).contains(goodsNameArr.get(i))) {
-                    System.out.println("Book matched");
                     isExempt = true;
                 }
             }
             for (int i=0; i<goodsNameArr.size(); i++) {
                 if (Arrays.asList(definitions.food).contains(goodsNameArr.get(i))) {
-                    System.out.println("Food matched");
                     isExempt = true;
                 }
             }
             for (int i=0; i<goodsNameArr.size(); i++) {
                 if (Arrays.asList(definitions.medical).contains(goodsNameArr.get(i))) {
-                    System.out.println("Medical matched");
                     isExempt = true;
                 }
             }
@@ -79,14 +80,24 @@ public class SalesTax {
             // This is the p variable
             double thisGoodPrice = Double.parseDouble(splitString[splitString.length-1]);
 
-            double taxCost = 0;
-            if (isExempt) {
-                 taxCost = (10 * thisGoodPrice) / 100;
+            // Only calculate sales tax if the good is not exempt
+            if (!isExempt) {
+                double unAdjtaxCost = (10 * thisGoodPrice)/100;
 
+                double n = thisGoodPrice*10 % .05;
+                // Add a small adjuster to ensure the format has the correct 2 digits
+                double adj = .051-n;
+
+                taxCost = unAdjtaxCost+adj;
+
+                // Add the tax cost to both the sales taxes and the goods price
+                salesTaxes += taxCost;
+                thisGoodPrice += taxCost;
             }
-            System.out.println("Tax cost is: ");
-            System.out.println(taxCost);
+
+            // Add this good's price (which includes tax) to the total
             totalPrice += thisGoodPrice;
+
             goodsPrices.add(thisGoodPrice);
             numOfItems++;
         }
@@ -98,12 +109,12 @@ public class SalesTax {
             System.out.print(" ");
             System.out.print(goodsNames.get(i));
             System.out.print(": ");
-            System.out.println(goodsPrices.get(i));
+            System.out.println(numberFormat.format(goodsPrices.get(i)));
         }
         System.out.print("Sales Taxes: ");
-        System.out.println("Print calculated tax here");
+        System.out.println(numberFormat.format(salesTaxes));
         System.out.print("Total: ");
-        System.out.println(totalPrice);
+        System.out.println(numberFormat.format(totalPrice));
 
     }
 
