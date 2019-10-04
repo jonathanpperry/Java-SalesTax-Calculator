@@ -91,7 +91,7 @@ public class SalesTax {
             if (!isExempt) {
                 double unAdjtaxCost = (10 * thisGoodPrice)/100;
 
-                double n = thisGoodPrice*10 % .05;
+                double n = thisGoodPrice % .05;
                 // Add a small adjuster to ensure the format has the correct 2 digits
                 double adj = .051-n;
 
@@ -102,11 +102,13 @@ public class SalesTax {
             if (isImport) {
                 double unAdjtaxCost = (5 * thisGoodPrice)/100;
 
-                double n = thisGoodPrice*10 % .05;
+                double n = unAdjtaxCost % .05;
                 // Add a small adjuster to ensure the format has the correct 2 digits
-                double adj = .051-n;
+                double adj = .0501-n;
 
                 importTax = unAdjtaxCost+adj;
+                System.out.print("The import tax is ");
+                System.out.println(importTax);
 
                 // Add the tax cost to both the sales taxes and the goods price
                 salesTaxes += importTax;
