@@ -16,7 +16,8 @@ public class TypeDefs {
     // Medical products
     String medical[] = {
             "drug",
-            "pill"
+            "pill",
+            "pills"
     };
 
 }

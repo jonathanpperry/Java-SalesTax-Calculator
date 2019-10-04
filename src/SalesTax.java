@@ -8,7 +8,7 @@ public class SalesTax {
     public static void main(String[] args)throws Exception
     {
         // We need to provide file path as the parameter:
-        File file = new File("./src/input1.txt");
+        File file = new File("./src/input3.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -38,15 +38,13 @@ public class SalesTax {
             double taxCost = 0;
             String[] splitString = st.split(" ");
             goodsQuantities.add(Integer.parseInt(splitString[0]));
-            int goodStartIndex;
+            int goodStartIndex = 1;
 
             if (splitString[1].equals("imported")) {
                 goodsImported.add(true);
-                goodStartIndex = 2;
                 isImport = true;
             } else {
                 goodsImported.add(false);
-                goodStartIndex = 1;
             }
             int goodEndIndex = splitString.length-2;
 
@@ -91,11 +89,15 @@ public class SalesTax {
             if (!isExempt) {
                 double unAdjtaxCost = (10 * thisGoodPrice)/100;
 
-                double n = thisGoodPrice % .05;
+                double n = unAdjtaxCost % .05;
                 // Add a small adjuster to ensure the format has the correct 2 digits
                 double adj = .051-n;
 
                 exemptTax = unAdjtaxCost+adj;
+                System.out.print("The exempt tax is ");
+                System.out.println(exemptTax);
+
+
                 salesTaxes += exemptTax;
             }
 
