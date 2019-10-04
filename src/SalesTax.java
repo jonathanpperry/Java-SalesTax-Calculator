@@ -8,7 +8,7 @@ public class SalesTax {
     public static void main(String[] args)throws Exception
     {
         // We need to provide file path as the parameter:
-        File file = new File("./src/input3.txt");
+        File file = new File("./src/test1.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -91,12 +91,9 @@ public class SalesTax {
 
                 double n = unAdjtaxCost % .05;
                 // Add a small adjuster to ensure the format has the correct 2 digits
-                double adj = .051-n;
+                double adj = .0501-n;
 
                 exemptTax = unAdjtaxCost+adj;
-                System.out.print("The exempt tax is ");
-                System.out.println(exemptTax);
-
 
                 salesTaxes += exemptTax;
             }
@@ -109,8 +106,6 @@ public class SalesTax {
                 double adj = .0501-n;
 
                 importTax = unAdjtaxCost+adj;
-                System.out.print("The import tax is ");
-                System.out.println(importTax);
 
                 // Add the tax cost to both the sales taxes and the goods price
                 salesTaxes += importTax;

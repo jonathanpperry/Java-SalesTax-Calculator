@@ -9,6 +9,7 @@ public class TypeDefs {
             "bread",
             "chocolate",
             "chocolates",
+            "guacamole",
             "milk",
             "rice"
     };
