@@ -30,13 +30,20 @@ public class SalesTax {
         // Add information to the arraylists
         while ((st = br.readLine()) != null) {
             boolean isExempt = false;
+            boolean isImport = false;
+
+            double exemptTax = 0;
+            double importTax = 0;
+
             double taxCost = 0;
             String[] splitString = st.split(" ");
             goodsQuantities.add(Integer.parseInt(splitString[0]));
             int goodStartIndex;
-            if (splitString[1] == "imported") {
+
+            if (splitString[1].equals("imported")) {
                 goodsImported.add(true);
                 goodStartIndex = 2;
+                isImport = true;
             } else {
                 goodsImported.add(false);
                 goodStartIndex = 1;
@@ -88,12 +95,25 @@ public class SalesTax {
                 // Add a small adjuster to ensure the format has the correct 2 digits
                 double adj = .051-n;
 
-                taxCost = unAdjtaxCost+adj;
+                exemptTax = unAdjtaxCost+adj;
+                salesTaxes += exemptTax;
+            }
+
+            if (isImport) {
+                double unAdjtaxCost = (5 * thisGoodPrice)/100;
+
+                double n = thisGoodPrice*10 % .05;
+                // Add a small adjuster to ensure the format has the correct 2 digits
+                double adj = .051-n;
+
+                importTax = unAdjtaxCost+adj;
 
                 // Add the tax cost to both the sales taxes and the goods price
-                salesTaxes += taxCost;
-                thisGoodPrice += taxCost;
+                salesTaxes += importTax;
             }
+
+            // This good's new price now includes all the taxes on it
+            thisGoodPrice = thisGoodPrice + exemptTax + importTax;
 
             // Add this good's price (which includes tax) to the total
             totalPrice += thisGoodPrice;
