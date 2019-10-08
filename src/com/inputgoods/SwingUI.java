@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DemoSwing implements ActionListener {
+public class SwingUI implements ActionListener {
     private JTextField T = new JTextField(30);
     private JTextField T1 = new JTextField(30);
     private JFrame f = new JFrame("Demo");
@@ -13,7 +13,7 @@ public class DemoSwing implements ActionListener {
     // Static variable
     static String N, S;
 
-    public DemoSwing() {
+    public SwingUI() {
 
         f.setVisible(true);
         f.setSize(500, 500);
@@ -38,8 +38,8 @@ public class DemoSwing implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == B) {
-            T.setText(Demo.Name);
-            T1.setText(Demo.Surname);
+            T.setText(SalesTax.Name);
+            T1.setText(SalesTax.Surname);
         }
     }
 }

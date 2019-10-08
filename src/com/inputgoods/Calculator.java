@@ -1,41 +1,32 @@
 package com.inputgoods;
 
+import javax.swing.*;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
-class SalesTax {
+public class Calculator {
 
-    Scanner scan;
-    static String Name, Surname;
-    BufferedReader br;
+    private JTextField textField1;
 
-    ArrayList goodsQuantities = new ArrayList<Integer>();
-    ArrayList goodsImported = new ArrayList<Boolean>();
-    ArrayList goodsNames = new ArrayList<String>();
-    ArrayList goodsPrices = new ArrayList<Number>();
+    public static void main(String[] args)throws Exception
+    {
+        // We need to provide file path as the parameter:
+        File file = new File("./src/test1.txt");
 
-    double salesTaxes = 0;
-    double totalPrice = 0;
+        BufferedReader br = new BufferedReader(new FileReader(file));
 
+        DecimalFormat numberFormat = new DecimalFormat("#0.00");
 
-    public void open() throws IOException {
-        String current = new java.io.File( "." ).getCanonicalPath();
+        ArrayList goodsQuantities = new ArrayList<Integer>();
+        ArrayList goodsImported = new ArrayList<Boolean>();
+        ArrayList goodsNames = new ArrayList<String>();
+        ArrayList goodsPrices = new ArrayList<Number>();
 
-        File file = null;
-        try {
-            file = new File("./src/com/inputgoods/input1.txt");
-            System.out.println("File opened successfully!");
-        } catch (NullPointerException e) {
-            System.out.println("Error in opening file. Please check the directory path.");
-        }
+        double salesTaxes = 0;
+        double totalPrice = 0;
 
-        br = new BufferedReader(new FileReader(file));
-
-    }
-
-    public void ReadData() throws IOException {
         TypeDefs definitions = new TypeDefs();
 
         String st;
@@ -134,14 +125,21 @@ class SalesTax {
             goodsPrices.add(thisGoodPrice);
             numOfItems++;
         }
-    }
 
-    public static void main(String[] args) throws IOException {
-        new SwingUI();
 
-        SalesTax f = new SalesTax();
-        f.open();
-        f.ReadData();
+        // Iterate through constructed lists and print the information
+        for (int i=0; i<numOfItems; i++) {
+            System.out.print(goodsQuantities.get(i));
+            System.out.print(" ");
+            System.out.print(goodsNames.get(i));
+            System.out.print(": ");
+            System.out.println(numberFormat.format(goodsPrices.get(i)));
+        }
+        System.out.print("Sales Taxes: ");
+        System.out.println(numberFormat.format(salesTaxes));
+        System.out.print("Total: ");
+        System.out.println(numberFormat.format(totalPrice));
+
     }
 
 }
