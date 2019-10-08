@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_salestax" default="compile.module.salestax">
+  <dirname property="module.salestax.basedir" file="${ant.file.module_salestax}"/>
+  
+  <property name="module.jdk.home.salestax" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.salestax" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.salestax" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.salestax" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="salestax.output.dir" value="${module.salestax.basedir}/out/production/SalesTax"/>
+  <property name="salestax.testoutput.dir" value="${module.salestax.basedir}/out/test/SalesTax"/>
+  
+  <path id="salestax.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="salestax.module.production.classpath">
+    <path refid="${module.jdk.classpath.salestax}"/>
+  </path>
+  
+  <path id="salestax.runtime.production.module.classpath">
+    <pathelement location="${salestax.output.dir}"/>
+  </path>
+  
+  <path id="salestax.module.classpath">
+    <path refid="${module.jdk.classpath.salestax}"/>
+    <pathelement location="${salestax.output.dir}"/>
+  </path>
+  
+  <path id="salestax.runtime.module.classpath">
+    <pathelement location="${salestax.testoutput.dir}"/>
+    <pathelement location="${salestax.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.salestax">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.salestax">
+    <patternset refid="excluded.from.module.salestax"/>
+  </patternset>
+  
+  <path id="salestax.module.sourcepath">
+    <dirset dir="${module.salestax.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.salestax" depends="compile.module.salestax.production,compile.module.salestax.tests" description="Compile module SalesTax"/>
+  
+  <target name="compile.module.salestax.production" depends="register.custom.compilers" description="Compile module SalesTax; production classes">
+    <mkdir dir="${salestax.output.dir}"/>
+    <javac2 destdir="${salestax.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.salestax}/javac">
+      <compilerarg line="${compiler.args.salestax}"/>
+      <bootclasspath refid="salestax.module.bootclasspath"/>
+      <classpath refid="salestax.module.production.classpath"/>
+      <src refid="salestax.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.salestax"/>
+    </javac2>
+    
+    <copy todir="${salestax.output.dir}">
+      <fileset dir="${module.salestax.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.salestax.tests" depends="register.custom.compilers,compile.module.salestax.production" description="compile module SalesTax; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.salestax" description="cleanup module">
+    <delete dir="${salestax.output.dir}"/>
+    <delete dir="${salestax.testoutput.dir}"/>
+  </target>
+</project>

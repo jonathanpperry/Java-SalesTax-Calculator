@@ -8,7 +8,8 @@ import java.util.Scanner;
 class SalesTax {
 
     Scanner scan;
-    static String Name, Surname;
+    static String InputGoods;
+    String outputGoods;
     BufferedReader br;
 
     ArrayList goodsQuantities = new ArrayList<Integer>();
@@ -137,7 +138,7 @@ class SalesTax {
     }
 
     public static void main(String[] args) throws IOException {
-        new SwingUI();
+        new SalesTaxesUI();
 
         SalesTax f = new SalesTax();
         f.open();
