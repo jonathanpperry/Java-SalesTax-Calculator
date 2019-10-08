@@ -25,7 +25,7 @@ class SalesTax {
 
         File file = null;
         try {
-            file = new File("./src/com/inputgoods/input1.txt");
+            file = new File("./src/com/salestax/input1.txt");
             System.out.println("File opened successfully!");
         } catch (NullPointerException e) {
             System.out.println("Error in opening file. Please check the directory path.");
