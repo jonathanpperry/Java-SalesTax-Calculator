@@ -1,4 +1,4 @@
-package com.inputgoods;
+package com.salestax;
 
 import java.io.*;
 import java.util.ArrayList;

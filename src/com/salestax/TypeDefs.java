@@ -1,4 +1,4 @@
-package com.inputgoods;
+package com.salestax;
 
 public class TypeDefs {
     // Books

@@ -1,4 +1,4 @@
-package com.inputgoods;
+package com.salestax;
 
 import javax.swing.*;
 import java.io.*;
