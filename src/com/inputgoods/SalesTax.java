@@ -1,9 +1,14 @@
+package com.inputgoods;
+
+import javax.swing.*;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SalesTax {
+
+    private JTextField textField1;
 
     public static void main(String[] args)throws Exception
     {

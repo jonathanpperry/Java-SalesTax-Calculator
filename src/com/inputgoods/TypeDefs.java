@@ -1,3 +1,5 @@
+package com.inputgoods;
+
 public class TypeDefs {
     // Books
     String book[] = {"book", "books"};
