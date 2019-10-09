@@ -12,21 +12,45 @@ import java.io.IOException;
 
 public class SalesTaxesUI implements ActionListener {
     private JFrame f = new JFrame("Sales Tax Exercise");
-    // Static variable
+
+    // The UI Components used in the application
     private JTextArea goodsBeforeTax = new JTextArea(20, 20);
-    private JTextPane goodsAfterTax;
+    private JTextArea goodsAfterTax = new JTextArea(20, 20);
     private JButton calculateButton;
     private JPanel mainPanel = new JPanel();
 
+    // Gridbag Constrains object
+    GridBagConstraints constraints = new GridBagConstraints();
 
     public SalesTaxesUI() {
 
-        mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        mainPanel.setLayout(new BorderLayout());
+        calculateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button pressed!");
+            }
+        } );
 
-        mainPanel.add(goodsBeforeTax, BorderLayout.WEST);
-        mainPanel.add(goodsAfterTax, BorderLayout.EAST);
-        mainPanel.add(calculateButton, BorderLayout.SOUTH);
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.BOTH;
+
+        mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        mainPanel.setLayout(new GridBagLayout());
+
+        // Add the first text area in top left
+        mainPanel.add(goodsBeforeTax, constraints);
+
+        // Change grid x to put next text area to the right
+        constraints. gridx = 1;
+        mainPanel.add(goodsAfterTax, constraints);
+
+        constraints.gridy = 1;
+        mainPanel.add(calculateButton, constraints);
+
+        JScrollPane sp = new JScrollPane(goodsBeforeTax, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        mainPanel.add(sp);
 
         f.add(mainPanel);
 
