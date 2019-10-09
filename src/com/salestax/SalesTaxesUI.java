@@ -1,6 +1,8 @@
 package com.salestax;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,16 +13,20 @@ import java.io.IOException;
 public class SalesTaxesUI implements ActionListener {
     private JFrame f = new JFrame("Sales Tax Exercise");
     // Static variable
-    private JTextArea goodsBeforeTax;
+    private JTextArea goodsBeforeTax = new JTextArea(20, 20);
     private JTextPane goodsAfterTax;
     private JButton calculateButton;
     private JPanel mainPanel = new JPanel();
 
+
     public SalesTaxesUI() {
 
-        mainPanel.add(goodsBeforeTax);
-        mainPanel.add(goodsAfterTax);
-        mainPanel.add(calculateButton);
+        mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        mainPanel.setLayout(new BorderLayout());
+
+        mainPanel.add(goodsBeforeTax, BorderLayout.WEST);
+        mainPanel.add(goodsAfterTax, BorderLayout.EAST);
+        mainPanel.add(calculateButton, BorderLayout.SOUTH);
 
         f.add(mainPanel);
 
@@ -57,6 +63,7 @@ public class SalesTaxesUI implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
+        System.out.println("Action performed!");
         if (e.getSource() == calculateButton) {
             try {
                 goodsAfterTax.setText(setGoodsBeforeTax());
