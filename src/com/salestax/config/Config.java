@@ -2,6 +2,7 @@ package com.salestax.config;
 
 public class Config {
     private String inputDir = "./src/com/salestax/input/";
+    private String outputDir = "./src/com/salestax/output/";
 
     // Change the input from here
     // TODO: Make this configurable from a file selector in the GUI
@@ -13,5 +14,9 @@ public class Config {
 
     public String returnFilePathWithString(String filename) {
         return inputDir.concat(filename);
+    }
+
+    public String returnOutputFilePath(String filename) {
+        return  outputDir.concat(filename);
     }
 }

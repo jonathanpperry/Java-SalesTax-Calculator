@@ -57,7 +57,6 @@ public class SalesTaxesUI {
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    System.out.println("Clicked button");
                     System.out.println(calc.setGoodsAfterTax());
                     goodsAfterTax.setText(calc.setGoodsAfterTax());
                 } catch (IOException ex) {

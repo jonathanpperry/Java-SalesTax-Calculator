@@ -20,7 +20,7 @@ public class TestOne {
 
     String readFile(String filename, Charset encoding) throws IOException
     {
-        byte[] encoded = Files.readAllBytes(Paths.get(this.config.returnFilePathWithString(filename)));
+        byte[] encoded = Files.readAllBytes(Paths.get(this.config.returnOutputFilePath(filename)));
         return new String(encoded, encoding);
     }
 
@@ -31,6 +31,6 @@ public class TestOne {
 
     @Test
     public void secondTest() throws IOException {
-        Assert.assertTrue(calc.setGoodsAfterTax().equals(readFile("input3.txt", Charset.defaultCharset())));
+        Assert.assertTrue(calc.setGoodsAfterTax().equals(readFile("output3.txt", Charset.defaultCharset())));
     }
 }
