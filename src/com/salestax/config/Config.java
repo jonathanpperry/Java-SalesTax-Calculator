@@ -10,4 +10,8 @@ public class Config {
     public String filePath() {
         return inputDir.concat(goodsFile);
     }
+
+    public String returnFilePathWithString(String filename) {
+        return inputDir.concat(filename);
+    }
 }

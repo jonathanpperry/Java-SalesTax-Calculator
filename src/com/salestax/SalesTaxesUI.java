@@ -52,7 +52,7 @@ public class SalesTaxesUI {
         Calculator calc = new Calculator();
 
         // Assign the correct information in the array lists
-        calc.ReadData();
+        calc.readData();
 
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

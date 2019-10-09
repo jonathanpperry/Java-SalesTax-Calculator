@@ -28,7 +28,7 @@ public class Calculator {
 
     Config config = new Config();
 
-    Calculator() throws IOException {
+    public Calculator() throws IOException {
         // Open will assigned the buffered reader to the correct file based on config
         this.open();
     }
@@ -46,7 +46,7 @@ public class Calculator {
 
     }
 
-    public void ReadData() throws IOException {
+    public void readData() throws IOException {
         TypeDefs definitions = new TypeDefs();
 
         String st;
