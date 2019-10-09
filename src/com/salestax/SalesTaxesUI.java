@@ -48,10 +48,12 @@ public class SalesTaxesUI {
 
     public SalesTaxesUI() {
 
+        Calculator calc = new Calculator();
+
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    goodsAfterTax.setText(setGoodsBeforeTax());
+                    goodsAfterTax.setText(calc.setGoodsAfterTax());
                 } catch (IOException ex) {
                     System.out.println("Error setting the text");
                     ex.printStackTrace();
@@ -90,7 +92,7 @@ public class SalesTaxesUI {
         try {
             goodsBeforeTax.setText(setGoodsBeforeTax());
         } catch (IOException ex) {
-            System.err.println("Something went wrong setting the text in the left area");
+            System.err.println("Something went wrong setting the text in the right text area");
             ex.printStackTrace();
         }
     }
