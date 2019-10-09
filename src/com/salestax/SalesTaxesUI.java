@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class SalesTaxesUI implements ActionListener {
+public class SalesTaxesUI {
     private JFrame f = new JFrame("Sales Tax Exercise");
 
     // The UI Components used in the application
@@ -22,11 +22,35 @@ public class SalesTaxesUI implements ActionListener {
     // Gridbag Constrains object
     GridBagConstraints constraints = new GridBagConstraints();
 
+    public String setGoodsBeforeTax() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("src/com/salestax/input1.txt"));
+
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append("\n");
+                line = br.readLine();
+            }
+            return sb.toString();
+        } finally {
+            br.close();
+        }
+    }
+
+
     public SalesTaxesUI() {
 
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Button pressed!");
+                try {
+                    goodsAfterTax.setText(setGoodsBeforeTax());
+                } catch (IOException ex) {
+                    System.out.println("Error setting the text");
+                    ex.printStackTrace();
+                }
             }
         } );
 
@@ -66,34 +90,4 @@ public class SalesTaxesUI implements ActionListener {
         }
     }
 
-    public String setGoodsBeforeTax() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/com/salestax/input1.txt"));
-
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-            }
-            return sb.toString();
-        } finally {
-            br.close();
-        }
-
-    }
-
-    public void actionPerformed(ActionEvent e) {
-
-        System.out.println("Action performed!");
-        if (e.getSource() == calculateButton) {
-            try {
-                goodsAfterTax.setText(setGoodsBeforeTax());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 }
