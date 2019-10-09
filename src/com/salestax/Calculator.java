@@ -26,7 +26,6 @@ public class Calculator {
     double salesTaxes = 0;
     double totalPrice = 0;
 
-
     Config config = new Config();
 
     Calculator() throws IOException {
@@ -161,6 +160,13 @@ public class Calculator {
                 sb.append(numberFormat.format(goodsPrices.get(i)));
                 sb.append("\n");
             }
+            // Append the total count for both sales taxes and total cost
+            sb.append("Sales Taxes: ");
+            sb.append(numberFormat.format(salesTaxes));
+            sb.append("\n");
+            sb.append("Total: ");
+            sb.append(numberFormat.format(totalPrice));
+
             return sb.toString();
         } finally {
             br.close();
