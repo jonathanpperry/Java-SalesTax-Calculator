@@ -23,7 +23,7 @@ public class SalesTaxesUI {
     GridBagConstraints constraints = new GridBagConstraints();
 
     public String setGoodsBeforeTax() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/com/salestax/input1.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/com/salestax/input/input1.txt"));
 
         try {
             StringBuilder sb = new StringBuilder();

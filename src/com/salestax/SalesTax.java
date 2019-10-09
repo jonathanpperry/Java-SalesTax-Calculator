@@ -1,11 +1,15 @@
 package com.salestax;
 
+import com.salestax.config.Config;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 class SalesTax {
+
+    Config config = new Config();
 
     Scanner scan;
     static String InputGoods;
@@ -22,11 +26,9 @@ class SalesTax {
 
 
     public void open() throws IOException {
-        String current = new java.io.File( "." ).getCanonicalPath();
-
         File file = null;
         try {
-            file = new File("./src/com/salestax/input1.txt");
+            file = new File(config.filePath());
             System.out.println("File opened successfully!");
         } catch (NullPointerException e) {
             System.out.println("Error in opening file. Please check the directory path.");
@@ -138,6 +140,7 @@ class SalesTax {
     }
 
     public static void main(String[] args) throws IOException {
+        // Create a new instance of the GUI for the sales tax exercise
         new SalesTaxesUI();
 
         SalesTax f = new SalesTax();
