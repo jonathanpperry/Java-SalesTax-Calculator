@@ -3,6 +3,7 @@ package com.salestax;
 import com.salestax.config.Config;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -24,6 +25,9 @@ class SalesTax {
     double salesTaxes = 0;
     double totalPrice = 0;
 
+    // Store number of items and decimal format object in global state
+    public int numOfItems = 0;
+    DecimalFormat numberFormat = new DecimalFormat("#0.00");
 
     public void open() throws IOException {
         File file = null;
@@ -43,7 +47,6 @@ class SalesTax {
 
         String st;
 
-        int numOfItems = 0;
         // Add information to the arraylists
         while ((st = br.readLine()) != null) {
             boolean isExempt = false;
@@ -139,13 +142,32 @@ class SalesTax {
         }
     }
 
+    public void printData() {
+        System.out.print("Number of items is");
+        System.out.println(numOfItems);
+
+        // Iterate through constructed lists and print the information
+        for (int i=0; i<numOfItems; i++) {
+            System.out.print(goodsQuantities.get(i));
+            System.out.print(" ");
+            System.out.print(goodsNames.get(i));
+            System.out.print(": ");
+            System.out.println(numberFormat.format(goodsPrices.get(i)));
+        }
+
+    }
+
     public static void main(String[] args) throws IOException {
+
+        SalesTax f = new SalesTax();
+        // Assign the buffer reader to the correct file
+        f.open();
+        f.ReadData();
+        f.printData();
+
         // Create a new instance of the GUI for the sales tax exercise
         new SalesTaxesUI();
 
-        SalesTax f = new SalesTax();
-        f.open();
-        f.ReadData();
     }
 
 }
