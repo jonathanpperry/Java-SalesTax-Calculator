@@ -22,7 +22,7 @@
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Calculate Receipt"/>
+          <text value="Calculate Receipt!"/>
         </properties>
       </component>
       <component id="b3374" class="javax.swing.JToolBar$Separator">

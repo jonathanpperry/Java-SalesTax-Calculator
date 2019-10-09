@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -27,6 +26,7 @@ public class SalesTaxesUI {
     // Config information
     Config config = new Config();
 
+    /* This Function will read from the input file, and construct a string with the contents of the file*/
     public String setGoodsBeforeTax() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(config.filePath()));
 
@@ -45,14 +45,20 @@ public class SalesTaxesUI {
         }
     }
 
+    /* Constructor for the sales tax UI GUI element */
+    public SalesTaxesUI() throws IOException {
 
-    public SalesTaxesUI() {
-
+        // Create instance of the calculator
         Calculator calc = new Calculator();
+
+        // Assign the correct information in the array lists
+        calc.ReadData();
 
         calculateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+                    System.out.println("Clicked button");
+                    System.out.println(calc.setGoodsAfterTax());
                     goodsAfterTax.setText(calc.setGoodsAfterTax());
                 } catch (IOException ex) {
                     System.out.println("Error setting the text");
