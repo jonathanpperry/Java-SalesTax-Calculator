@@ -13,4 +13,4 @@ Sales Tax Exercise
 * Run the Sales Tax main() method, which will open the GUI
 
 # Configuration
-* To set the input to run, please select the desired text input within the open() function inside the SalesTax class
+* To set the input to run, select the file to be used in the Config class (located in the config/ package)
