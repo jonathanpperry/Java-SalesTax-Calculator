@@ -1,5 +1,7 @@
 package com.salestax;
 
+import com.salestax.config.Config;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -22,8 +24,11 @@ public class SalesTaxesUI {
     // Gridbag Constrains object
     GridBagConstraints constraints = new GridBagConstraints();
 
+    // Config information
+    Config config = new Config();
+
     public String setGoodsBeforeTax() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/com/salestax/input/input1.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(config.filePath()));
 
         try {
             StringBuilder sb = new StringBuilder();
