@@ -5,7 +5,7 @@ public class Config {
 
     // Change the input from here
     // TODO: Make this configurable from a file selector in the GUI
-    private String goodsFile = "input3.txt";
+    private String goodsFile = "input1.txt";
 
     public String filePath() {
         return inputDir.concat(goodsFile);
