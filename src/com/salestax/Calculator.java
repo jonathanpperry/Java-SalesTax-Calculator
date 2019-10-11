@@ -147,11 +147,12 @@ public class Calculator {
             // Add the import tax times number of goods to the sales taxes
             salesTaxes += importTax * thisGoodQuantity;
 
-            // Add this good's price (which includes tax) to the total
-            totalPrice += thisGoodPrice * thisGoodQuantity;
-
             // The total price is the goods price * the number of goods purchased
-            goodsPrices.add(thisGoodPrice);
+            double totalGoodsPrice = thisGoodPrice * thisGoodQuantity;
+
+            // Add this total price to the total and the goods prices ArrayList
+            totalPrice += totalGoodsPrice;
+            goodsPrices.add(totalGoodsPrice);
 
             numOfItems++;
         }
