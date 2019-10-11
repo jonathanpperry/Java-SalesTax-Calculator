@@ -1,5 +1,6 @@
 package com.salestax;
 
+/* These types are exempt from sales tax*/
 public class TypeDefs {
     // Books
     String book[] = {"book", "books"};

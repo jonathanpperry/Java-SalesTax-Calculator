@@ -126,9 +126,6 @@ public class Calculator {
 
                 exemptTax = unAdjtaxCost+adj;
 
-                // Add the exempt tax to the price of the good if there is any
-                thisGoodPrice += exemptTax;
-
             }
 
             if (isImport) {
@@ -139,9 +136,6 @@ public class Calculator {
                 double adj = .0501-n;
 
                 importTax = unAdjtaxCost+adj;
-
-                // Add the tax cost to both the sales taxes and the goods price
-                salesTaxes += importTax;
             }
 
             // This good's new price now includes all the taxes on it
@@ -150,11 +144,14 @@ public class Calculator {
             // Add the taxes to the sales taxes for the number of goods
             salesTaxes += exemptTax * thisGoodQuantity;
 
+            // Add the import tax times number of goods to the sales taxes
+            salesTaxes += importTax * thisGoodQuantity;
+
             // Add this good's price (which includes tax) to the total
             totalPrice += thisGoodPrice * thisGoodQuantity;
 
             // The total price is the goods price * the number of goods purchased
-            goodsPrices.add(totalPrice);
+            goodsPrices.add(thisGoodPrice);
 
             numOfItems++;
         }
