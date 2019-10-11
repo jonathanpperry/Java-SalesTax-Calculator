@@ -60,8 +60,15 @@ public class Calculator {
             double importTax = 0;
 
             double taxCost = 0;
+
+            // Split the string by whitespace
             String[] splitString = st.split(" ");
-            goodsQuantities.add(Integer.parseInt(splitString[0]));
+
+            // Get the quantity of this good
+            int thisGoodQuantity = Integer.parseInt(splitString[0]);
+            goodsQuantities.add(thisGoodQuantity);
+
+            // The name of the good starts at index 1
             int goodStartIndex = 1;
 
             if (splitString[1].equals("imported")) {
@@ -119,7 +126,9 @@ public class Calculator {
 
                 exemptTax = unAdjtaxCost+adj;
 
-                salesTaxes += exemptTax;
+                // Add the exempt tax to the price of the good if there is any
+                thisGoodPrice += exemptTax;
+
             }
 
             if (isImport) {
@@ -138,10 +147,15 @@ public class Calculator {
             // This good's new price now includes all the taxes on it
             thisGoodPrice = thisGoodPrice + exemptTax + importTax;
 
-            // Add this good's price (which includes tax) to the total
-            totalPrice += thisGoodPrice;
+            // Add the taxes to the sales taxes for the number of goods
+            salesTaxes += exemptTax * thisGoodQuantity;
 
-            goodsPrices.add(thisGoodPrice);
+            // Add this good's price (which includes tax) to the total
+            totalPrice += thisGoodPrice * thisGoodQuantity;
+
+            // The total price is the goods price * the number of goods purchased
+            goodsPrices.add(totalPrice);
+
             numOfItems++;
         }
     }
