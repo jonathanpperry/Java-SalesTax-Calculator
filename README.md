@@ -8,6 +8,7 @@ Sales Tax Exercise
 * To open the project in IntelliJ, just open the root directory.
 * Open the src/com/salestax/SalesTax.java file
 * If IntelliJ complains that the project SDK is not defined, please choose Java 8 in the configuration window that opens
+* You will also need to import the JUnit JAR file before the app will run, which you will be prompted to do by IntelliJ when running the SalesTax class
 
 ## Running the App
 * Run the Sales Tax main() method, which will open the GUI
