@@ -1,4 +1,4 @@
-# Liferay-Interview
+# Java Swing Sales Tax Calculator
 Sales Tax Exercise
 
 ## Requirements
